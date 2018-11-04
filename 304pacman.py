@@ -5,6 +5,20 @@ import sys
 
 END = False
 
+def check(tab, char) :
+    found = 0
+
+    pos = [0, 0]
+    for line in tab :
+        for elt in line :
+            if (elt == char) :
+                found +=1
+            pos[1] +=1
+        pos[0] +=1
+        pos[1] = 0
+    if (found > 1 or found == 0) :
+        exit(84)
+
 def find(tab, char) :
     pos = [0, 0]
     for line in tab :
@@ -21,7 +35,7 @@ def checkend(tab, pos) :
             for elt in line :
                 print(elt, end='')
             print()
-        exit()
+        exit(0)
 
 
 def evalnear(tab, pos, empty, weight, branch) :
@@ -49,6 +63,8 @@ def endbranch(tab, weight, branch, empty, turn) :
 
 def algo(tab, wall, empty) :
     weight = 0
+    check(tab, 'F')
+    check(tab, 'P')
     allbranch = []
     allbranch.append(find(tab, 'F'))
     allbranch.append([])
